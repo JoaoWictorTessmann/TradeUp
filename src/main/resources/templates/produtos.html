@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Produtos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1>🛍️ Trade UP</h1>
+        <ul>
+          <li><a th:href="@{/}">Home</a></li>
+          <li><a th:href="@{/categorias}">Categorias</a></li>
+          <li><a th:href="@{/produtos}">Produtos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <h2>Gerenciar Produtos</h2>
+
+      <section class="card">
+        <form th:action="@{/produtos/salvar}" method="post">
+          <input
+            type="text"
+            name="nome"
+            placeholder="Nome do Produto"
+            required
+          />
+
+          <input
+            type="text"
+            name="descricao"
+            placeholder="Descrição do Produto"
+            required
+            class="descricao-input"
+          />
+
+          <input
+            type="number"
+            name="preco"
+            placeholder="Preço (R$)"
+            step="0.01"
+            required
+          />
+
+          <select name="categoria.id" required>
+            <option value="">Selecione uma categoria</option>
+            <option
+              th:each="cat : ${categorias}"
+              th:value="${cat.id}"
+              th:text="${cat.nome}"
+            ></option>
+          </select>
+
+          <button type="submit">Salvar</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h3>Lista de Produtos</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Preço (R$)</th>
+              <th>Categoria</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="produto : ${produtos}">
+              <td th:text="${produto.nome}">Produto Exemplo</td>
+              <td
+                th:text="${produto.descricao != null ? produto.descricao : '—'}"
+              >
+                Descrição Exemplo
+              </td>
+              <td
+                th:text="${produto.preco != null ? 
+                  'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'COMMA', 3, 'POINT') : 
+                  'R$ 0,00'}"
+              ></td>
+              <td
+                th:text="${produto.categoria != null ? produto.categoria.nome : '—'}"
+              >
+                Categoria Exemplo
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
