@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Início</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1>🛍️ Trade UP</h1>
+        <ul>
+          <li><a th:href="@{/}">Home</a></li>
+          <li><a th:href="@{/categorias}">Categorias</a></li>
+          <li><a th:href="@{/produtos}">Produtos</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <h2>Visão Geral</h2>
+
+      
+      <section class="card">
+        <h3>Total de Categorias</h3>
+        <p th:text="${totalCategorias}">12</p>
+      </section>
+
+      
+      <section class="card">
+        <h3>Total de Produtos</h3>
+        <p th:text="${totalProdutos}">42</p>
+      </section>
+
+      
+      <section class="card">
+        <h3>Relatórios Recentes</h3>
+        <p>Aqui você pode adicionar gráficos ou cards informativos.</p>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Erro Interno</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+
+  <body>
+    <main class="error-box">
+      <h1>
+        😵 Erro <span th:text="${errorCode}">500</span>
+      </h1>
+      <p th:text="${errorMessage}">Erro interno no servidor.</p>
+      <a th:href="@{/}">Voltar para a Home</a>
+    </main>
+  </body>
+</html>
