@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary: #1e2a38;
+    --secondary: #ff6600;
+    --background: #f4f4f4;
+    --card-bg: #ffffff;
+    --text: #333;
+    --text-light: #777;
+    --error-bg: #2c3e50;
+    --error-shadow: rgba(255, 102, 0, 0.5);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    padding-bottom: 50px;
+}
+
+.main-content {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.main-content h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: var(--primary);
+}
+
+header {
+    background-color: var(--primary);
+    padding: 20px;
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 24px;
+    color: var(--secondary);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--secondary);
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: var(--primary);
+    color: white;
+}
+
+table tr:hover {
+    background-color: #f0f0f0;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: var(--text-light);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 120px;
+    max-height: 120px;
+    resize: none;
+    padding: 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    background-color: #fafafa;
+    color: #333;
+    line-height: 1.5;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease-in-out;
+}
+
+textarea:focus {
+    border-color: var(--secondary);
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 102, 0, 0.08);
+    outline: none;
+}
+
+button {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e65c00;
+}
+
+.descricao-input {
+    height: 90px;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #fafafa;
+    color: #333;
+    line-height: 1.5;
+    font-family: inherit;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.descricao-input:focus {
+    border-color: var(--secondary);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.1);
+    outline: none;
+}
+
+.error-box {
+    background-color: var(--error-bg);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--error-shadow);
+    text-align: center;
+    max-width: 600px;
+    margin: 100px auto;
+    color: white;
+}
+
+.error-box h1 {
+    font-size: 48px;
+    color: var(--secondary);
+}
+
+.error-box p {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.error-box a {
+    margin-top: 30px;
+    display: inline-block;
+    background-color: var(--secondary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.error-box a:hover {
+    background-color: #e65c00;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .main-content {
+        padding: 0 10px;
+    }
+
+    form {
+        gap: 10px;
+    }
+
+    .error-box {
+        margin: 40px 20px;
+        padding: 30px;
+    }
+
+    .error-box h1 {
+        font-size: 36px;
+    }
+}
