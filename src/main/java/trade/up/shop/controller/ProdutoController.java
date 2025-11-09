@@ -1,0 +1,43 @@
+package trade.up.shop.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import trade.up.shop.model.Produto;
+import trade.up.shop.repository.CategoriaRepository;
+import trade.up.shop.repository.ProdutoRepository;
+
+@Controller
+@RequestMapping("/produtos")
+public class ProdutoController {
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    @GetMapping
+    public String listarProdutos(Model model) {
+        model.addAttribute("categorias", categoriaRepository.findAll());
+        model.addAttribute("produtos", produtoRepository.findAll());
+        return "produtos";
+    }
+
+    @PostMapping("/salvar")
+    public String salvar(@ModelAttribute Produto produto, Model model) {
+        try {
+            produtoRepository.save(produto);
+            return "redirect:/produtos";
+        } catch (Exception e) {
+            model.addAttribute("errorCode", 500);
+            model.addAttribute("errorMessage", "Erro ao salvar produto: " + e.getMessage());
+            return "error";
+        }
+    }
+}
