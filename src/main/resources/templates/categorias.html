@@ -20,7 +20,7 @@
 
     <main class="main-content">
       <h2>Gerenciar Categorias</h2>
-      
+
       <section class="card">
         <form th:action="@{/categorias/salvar}" method="post">
           <input
@@ -44,8 +44,8 @@
           <tr th:each="categoria : ${categorias}">
             <td th:text="${categoria.nome}">Categoria Exemplo</td>
             <td>
-              <a th:href="@{'categorias/excluir/' + ${categoria.id}}">Excluir</a>
-              <a th:href="@{'categorias/editar/' + ${categoria.id}}">Editar</a>
+              <a class="btn-danger" th:href="@{'categorias/excluir/' + ${categoria.id}}">Excluir</a>
+              <a class="btn-secondary" th:href="@{'categorias/editar/' + ${categoria.id}}">Editar</a>
             </td>
           </tr>
         </tbody>
