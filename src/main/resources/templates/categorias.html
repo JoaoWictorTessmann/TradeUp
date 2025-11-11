@@ -20,7 +20,6 @@
 
     <main class="main-content">
       <h2>Gerenciar Categorias</h2>
-
       
       <section class="card">
         <form th:action="@{/categorias/salvar}" method="post">
@@ -34,15 +33,23 @@
         </form>
       </section>
 
-      
-      <section class="card">
-        <h3>Lista de Categorias</h3>
-        <ul>
-          <li th:each="categoria : ${categorias}" th:text="${categoria.nome}">
-            Categoria 1
-          </li>
-        </ul>
-      </section>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome da Categoria</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="categoria : ${categorias}">
+            <td th:text="${categoria.nome}">Categoria Exemplo</td>
+            <td>
+              <a th:href="@{'categorias/excluir/' + ${categoria.id}}">Excluir</a>
+              <a th:href="@{'categorias/editar/' + ${categoria.id}}">Editar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </main>
   </body>
 </html>

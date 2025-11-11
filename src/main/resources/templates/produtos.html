@@ -72,6 +72,7 @@
               <th>Descrição</th>
               <th>Preço (R$)</th>
               <th>Categoria</th>
+              <th>Ações</th>
             </tr>
           </thead>
 
@@ -93,6 +94,9 @@
               >
                 Categoria Exemplo
               </td>
+              <td>
+                <a th:href="@{'produtos/excluir/' + ${produto.id}}">Excluir</a>
+                <a th:href="@{'produtos/editar/' + ${produto.id}}">Editar</a>
             </tr>
           </tbody>
         </table>
