@@ -17,7 +17,7 @@ public class Categoria {
     private Long id;
     private String nome;
 
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", cascade = jakarta.persistence.CascadeType.ALL)
     private List<Produto> produtos;
 
     public Long getId() {

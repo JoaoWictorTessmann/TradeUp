@@ -20,19 +20,12 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
         if (status != null) {
             statusCode = Integer.parseInt(status.toString());
 
-            switch (statusCode) {
-                case 404:
-                    mensagem = "Ops! Não encontramos a página que você procurava.";
-                    break;
-                case 403:
-                    mensagem = "Você não tem permissão para acessar esta página.";
-                    break;
-                case 500:
-                    mensagem = "Tivemos um probleminha técnico. Já estamos resolvendo!";
-                    break;
-                default:
-                    mensagem = "Algo deu errado. Tente novamente em instantes.";
-            }
+            mensagem = switch (statusCode) {
+                case 404 -> "Ops! Não encontramos a página que você procurava.";
+                case 403 -> "Você não tem permissão para acessar esta página.";
+                case 500 -> "Tivemos um probleminha técnico. Já estamos resolvendo!";
+                default -> "Algo deu errado. Tente novamente em instantes.";
+            };
         }
 
         model.addAttribute("errorCode", statusCode);
