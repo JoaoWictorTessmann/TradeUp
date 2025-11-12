@@ -95,8 +95,17 @@
                 Categoria Exemplo
               </td>
               <td>
-                <a class="btn-danger" th:href="@{'produtos/excluir/' + ${produto.id}}">Excluir</a>
-                <a class="btn-secondary" th:href="@{'produtos/editar/' + ${produto.id}}">Editar</a>
+                <a
+                  class="btn-danger"
+                  th:href="@{'produtos/excluir/' + ${produto.id}}"
+                  >Excluir</a
+                >
+                <a
+                  class="btn-secondary"
+                  th:href="@{'produtos/editar/' + ${produto.id}}"
+                  >Editar</a
+                >
+              </td>
             </tr>
           </tbody>
         </table>

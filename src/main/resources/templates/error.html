@@ -8,9 +8,7 @@
 
   <body>
     <main class="error-box">
-      <h1>
-        😵 Erro <span th:text="${errorCode}">500</span>
-      </h1>
+      <h1>😵 Erro <span th:text="${errorCode}">500</span></h1>
       <p th:text="${errorMessage}">Erro interno no servidor.</p>
       <a th:href="@{/}">Voltar para a Home</a>
     </main>

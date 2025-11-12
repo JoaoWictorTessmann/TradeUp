@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Editar Categoria</title>
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
-<body>
-  <header>
-   <nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Categoria</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
         <h1>🛍️ Trade UP</h1>
         <ul>
           <li><a th:href="@{/}">Home</a></li>
@@ -16,14 +16,23 @@
           <li><a th:href="@{/produtos}">Produtos</a></li>
         </ul>
       </nav>
-  </header>
+    </header>
 
-  <div class="main-content">
-    <h2>Editar Categoria</h2>
-    <form th:action="@{'/categorias/editar/' + ${categoria.id}}" th:object="${categoria}" method="post">
-      <input type="text" th:field="*{nome}" placeholder="Nome da Categoria" required />
-      <button type="submit">Salvar Alterações</button>
-    </form>
-  </div>
-</body>
+    <div class="main-content">
+      <h2>Editar Categoria</h2>
+      <form
+        th:action="@{'/categorias/editar/' + ${categoria.id}}"
+        th:object="${categoria}"
+        method="post"
+      >
+        <input
+          type="text"
+          th:field="*{nome}"
+          placeholder="Nome da Categoria"
+          required
+        />
+        <button type="submit">Salvar Alterações</button>
+      </form>
+    </div>
+  </body>
 </html>

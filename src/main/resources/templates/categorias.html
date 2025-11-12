@@ -44,8 +44,16 @@
           <tr th:each="categoria : ${categorias}">
             <td th:text="${categoria.nome}">Categoria Exemplo</td>
             <td>
-              <a class="btn-danger" th:href="@{'categorias/excluir/' + ${categoria.id}}">Excluir</a>
-              <a class="btn-secondary" th:href="@{'categorias/editar/' + ${categoria.id}}">Editar</a>
+              <a
+                class="btn-danger"
+                th:href="@{'categorias/excluir/' + ${categoria.id}}"
+                >Excluir</a
+              >
+              <a
+                class="btn-secondary"
+                th:href="@{'categorias/editar/' + ${categoria.id}}"
+                >Editar</a
+              >
             </td>
           </tr>
         </tbody>
