@@ -86,7 +86,7 @@
               </td>
               <td
                 th:text="${produto.preco != null ? 
-                  'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'POINT', 3, 'COMMA') : 
+                  'R$ ' + #numbers.formatDecimal(produto.preco, 1, 'POINT', 2, 'COMMA') : 
                   'R$ 0,00'}"
               ></td>
               <td

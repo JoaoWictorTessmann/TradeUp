@@ -60,10 +60,34 @@ public class ProdutoController {
         if (produto != null) {
             model.addAttribute("produto", produto);
             model.addAttribute("categorias", categoriaRepository.findAll());
-            return "editar_produto";
+            return "editarProduto";
         } else {
             model.addAttribute("errorCode", 404);
             model.addAttribute("errorMessage", "Produto não encontrado");
+            return "error";
+        }
+    }
+
+    @PostMapping("/editar/{id}")
+    public String atualizarProduto(@PathVariable Long id, @ModelAttribute Produto produtoAtualizado,
+            Model model) {
+        try {
+            Produto produtoExistente = produtoRepository.findById(id).orElse(null);
+            if (produtoExistente != null) {
+                produtoExistente.setNome(produtoAtualizado.getNome());
+                produtoExistente.setDescricao(produtoAtualizado.getDescricao());
+                produtoExistente.setPreco(produtoAtualizado.getPreco());
+                produtoExistente.setCategoria(produtoAtualizado.getCategoria());
+                produtoRepository.save(produtoExistente);
+                return "redirect:/produtos";
+            } else {
+                model.addAttribute("errorCode", 404);
+                model.addAttribute("errorMessage", "Produto não encontrado");
+                return "error";
+            }
+        } catch (Exception e) {
+            model.addAttribute("errorCode", 500);
+            model.addAttribute("errorMessage", "Erro ao atualizar produto: " + e.getMessage());
             return "error";
         }
     }

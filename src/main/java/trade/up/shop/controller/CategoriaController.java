@@ -42,17 +42,38 @@ public class CategoriaController {
             return "error";
         }
     }
-    
+
     @GetMapping("/editar/{id}")
     public String editarCategoria(@PathVariable Long id, Model model) {
         Categoria categoria = categoriaRepository.findById(id).orElse(null);
         if (categoria != null) {
             model.addAttribute("categoria", categoria);
-            return "editar_categoria";
+            return "editarCategoria";
         } else {
             model.addAttribute("errorCode", 404);
             model.addAttribute("errorMessage", "Categoria não encontrada");
             return "error";
         }
     }
+
+    @PostMapping("/editar/{id}")
+    public String atualizarCategoria(@PathVariable Long id, Categoria categoriaAtualizada, Model model) {
+        try {
+            Categoria categoriaExistente = categoriaRepository.findById(id).orElse(null);
+            if (categoriaExistente != null) {
+                categoriaExistente.setNome(categoriaAtualizada.getNome());
+                categoriaRepository.save(categoriaExistente);
+                return "redirect:/categorias";
+            } else {
+                model.addAttribute("errorCode", 404);
+                model.addAttribute("errorMessage", "Categoria não encontrada");
+                return "error";
+            }
+        } catch (Exception e) {
+            model.addAttribute("errorCode", 500);
+            model.addAttribute("errorMessage", "Erro ao atualizar categoria: " + e.getMessage());
+            return "error";
+        }
+    }
+
 }
