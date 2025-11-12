@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Produto</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+        <h1>🛍️ Trade UP</h1>
+        <ul>
+          <li><a th:href="@{/}">Home</a></li>
+          <li><a th:href="@{/categorias}">Categorias</a></li>
+          <li><a th:href="@{/produtos}">Produtos</a></li>
+        </ul>
+      </nav>
+  </header>
+
+  <div class="main-content">
+    <h2>Editar Produto</h2>
+    <form th:action="@{'/produtos/editar/' + ${produto.id}}" th:object="${produto}" method="post">
+      <input type="text" th:field="*{nome}" placeholder="Nome do Produto" required />
+      <textarea th:field="*{descricao}" placeholder="Descrição do Produto" class="descricao-input"></textarea>
+      <input type="number" step="0.01" th:field="*{preco}" placeholder="Preço (R$)" required />
+      <select th:field="*{categoria.id}">
+        <option value="" disabled>Selecione uma categoria</option>
+        <option th:each="cat : ${categorias}" th:value="${cat.id}" th:text="${cat.nome}"></option>
+      </select>
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </div>
+</body>
+</html>
