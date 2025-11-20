@@ -23,9 +23,19 @@ public class CategoriaController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Categoria categoria) {
-        categoriaService.salvar(categoria);
-        return "redirect:/categorias";
+    public String salvar(Categoria categoria, Model model) {
+        try {
+            categoriaService.salvar(categoria);
+            return "redirect:/categorias";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorCode", 400);
+            model.addAttribute("errorMessage", e.getMessage());
+            return "error";
+        } catch (Exception e) {
+            model.addAttribute("errorCode", 500);
+            model.addAttribute("errorMessage", "Erro ao salvar categoria: " + e.getMessage());
+            return "error";
+        }
     }
 
     @GetMapping("/excluir/{id}")
@@ -55,11 +65,21 @@ public class CategoriaController {
 
     @PostMapping("/editar/{id}")
     public String atualizarCategoria(@PathVariable Long id, Categoria categoriaAtualizada, Model model) {
-        if (categoriaService.atualizar(id, categoriaAtualizada)) {
-            return "redirect:/categorias";
-        } else {
-            model.addAttribute("errorCode", 404);
-            model.addAttribute("errorMessage", "Categoria não encontrada");
+        try {
+            if (categoriaService.atualizar(id, categoriaAtualizada)) {
+                return "redirect:/categorias";
+            } else {
+                model.addAttribute("errorCode", 404);
+                model.addAttribute("errorMessage", "Categoria não encontrada");
+                return "error";
+            }
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorCode", 400);
+            model.addAttribute("errorMessage", e.getMessage());
+            return "error";
+        } catch (Exception e) {
+            model.addAttribute("errorCode", 500);
+            model.addAttribute("errorMessage", "Erro ao atualizar categoria: " + e.getMessage());
             return "error";
         }
     }

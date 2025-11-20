@@ -27,6 +27,10 @@ public class ProdutoController {
         try {
             produtoService.salvar(produto);
             return "redirect:/produtos";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorCode", 400);
+            model.addAttribute("errorMessage", e.getMessage());
+            return "error";
         } catch (Exception e) {
             model.addAttribute("errorCode", 500);
             model.addAttribute("errorMessage", "Erro ao salvar produto: " + e.getMessage());

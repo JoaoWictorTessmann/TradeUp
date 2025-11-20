@@ -19,6 +19,9 @@ public class CategoriaService {
     }
 
     public Categoria salvar(Categoria categoria) {
+        if (categoriaRepository.existsByNome(categoria.getNome())) {
+            throw new IllegalArgumentException("Já existe uma categoria com esse nome!");
+        }
         return categoriaRepository.save(categoria);
     }
 
@@ -38,6 +41,11 @@ public class CategoriaService {
     public boolean atualizar(Long id, Categoria categoriaAtualizada) {
         Optional<Categoria> categoriaExistente = categoriaRepository.findById(id);
         if (categoriaExistente.isPresent()) {
+            Optional<Categoria> duplicado = categoriaRepository.findByNome(categoriaAtualizada.getNome());
+            if (duplicado.isPresent() && !duplicado.get().getId().equals(id)) {
+                throw new IllegalArgumentException("Já existe outra categoria com esse nome!");
+            }
+
             Categoria categoria = categoriaExistente.get();
             categoria.setNome(categoriaAtualizada.getNome());
             categoriaRepository.save(categoria);

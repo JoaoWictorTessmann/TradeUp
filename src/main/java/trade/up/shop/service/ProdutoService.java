@@ -27,6 +27,10 @@ public class ProdutoService {
     }
 
     public Produto salvar(Produto produto) {
+        Optional<Produto> existente = produtoRepository.findByNome(produto.getNome());
+        if (existente.isPresent()) {
+            throw new IllegalArgumentException("Já existe um produto com esse nome!");
+        }
         return produtoRepository.save(produto);
     }
 
@@ -43,10 +47,16 @@ public class ProdutoService {
         return produtoRepository.findById(id);
     }
 
-    public boolean atualizar(Long id, Produto produtoAtualizado) {
+     public boolean atualizar(Long id, Produto produtoAtualizado) {
         Optional<Produto> produtoExistente = produtoRepository.findById(id);
         if (produtoExistente.isPresent()) {
             Produto produto = produtoExistente.get();
+
+            Optional<Produto> duplicado = produtoRepository.findByNome(produtoAtualizado.getNome());
+            if (duplicado.isPresent() && !duplicado.get().getId().equals(id)) {
+                throw new IllegalArgumentException("Já existe outro produto com esse nome!");
+            }
+
             produto.setNome(produtoAtualizado.getNome());
             produto.setDescricao(produtoAtualizado.getDescricao());
             produto.setPreco(produtoAtualizado.getPreco());
